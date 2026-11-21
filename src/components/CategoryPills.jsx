@@ -24,7 +24,7 @@ export default function CategoryPills({ selectedCategory, onSelectCategory }) {
         </div>
 
         {/* Horizontal scrollable category tiles with high-res jewelry photography */}
-        <div className="flex items-center space-x-4 sm:space-x-6 overflow-x-auto pb-3 pt-1 no-scrollbar scroll-smooth">
+        <div className="flex items-center space-x-3.5 sm:space-x-6 overflow-x-auto pb-2 sm:pb-3 pt-1 no-scrollbar scroll-smooth">
           {CATEGORIES.map((cat) => {
             const isSelected = selectedCategory === cat.id;
             return (
@@ -33,7 +33,7 @@ export default function CategoryPills({ selectedCategory, onSelectCategory }) {
                 onClick={() => onSelectCategory(cat.id)}
                 className="flex flex-col items-center group shrink-0 focus:outline-none cursor-pointer"
               >
-                <div className={`w-18 h-18 sm:w-20 sm:h-20 rounded-full p-0.5 transition-all duration-300 ${
+                <div className={`w-14 h-14 sm:w-20 sm:h-20 rounded-full p-0.5 transition-all duration-300 ${
                   isSelected 
                     ? 'ring-2 ring-slate-900 ring-offset-2 scale-105 shadow-md' 
                     : 'hover:ring-2 hover:ring-amber-400 hover:ring-offset-1 group-hover:scale-105'
@@ -51,7 +51,7 @@ export default function CategoryPills({ selectedCategory, onSelectCategory }) {
                   </div>
                 </div>
 
-                <span className={`mt-2 text-xs font-medium text-center transition-colors max-w-[80px] truncate ${
+                <span className={`mt-1.5 text-[11px] sm:text-xs font-medium text-center transition-colors max-w-[70px] sm:max-w-[80px] truncate ${
                   isSelected ? 'text-slate-950 font-bold' : 'text-slate-600 group-hover:text-slate-900'
                 }`}>
                   {cat.name}

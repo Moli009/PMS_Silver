@@ -26,43 +26,43 @@ export default function Hero({ onExploreClick, onBudgetClick }) {
             </div>
 
             {/* Main Luxury Title */}
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-slate-900 leading-[1.15]">
-              Everyday Fine Jewellery, <br />
+            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-slate-900 leading-[1.18] sm:leading-[1.15]">
+              Everyday Fine Jewellery, <br className="hidden sm:inline" />
               <span className="italic font-normal text-stone-700">crafted to celebrate</span>{' '}
               <span className="relative inline-block text-slate-900">
                 You.
-                <svg className="absolute -bottom-2 left-0 w-full text-amber-500/40" viewBox="0 0 100 12" preserveAspectRatio="none">
+                <svg className="absolute -bottom-1.5 left-0 w-full text-amber-500/40" viewBox="0 0 100 12" preserveAspectRatio="none">
                   <path d="M0,8 Q50,0 100,8" stroke="currentColor" strokeWidth="3" fill="none" />
                 </svg>
               </span>
             </h1>
 
             {/* Subtext */}
-            <p className="mt-5 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-              Explore India’s premium 925 sterling silver & 18K vermeil collection. Certified BIS Hallmarked, anti-tarnish rhodium sealed, designed for daily wear without compromising on luxury.
+            <p className="mt-3 sm:mt-5 text-xs sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+              Explore India’s premium 925 sterling silver & 18K vermeil collection. Certified BIS Hallmarked, anti-tarnish rhodium sealed, designed for daily wear.
             </p>
 
             {/* Direct CTA Buttons */}
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5">
+            <div className="mt-5 sm:mt-8 flex flex-row items-center justify-center lg:justify-start gap-2.5 sm:gap-3.5">
               <button
                 onClick={onExploreClick}
-                className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 bg-slate-900 hover:bg-slate-800 text-white font-medium text-sm sm:text-base px-7 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer"
+                className="flex-1 sm:flex-none inline-flex items-center justify-center space-x-1.5 bg-slate-900 hover:bg-slate-800 text-white font-medium text-xs sm:text-base px-4 sm:px-7 py-3 sm:py-3.5 rounded-full shadow-md hover:shadow-xl transition-all cursor-pointer"
               >
-                <span>Shop Bestsellers</span>
-                <ArrowRight className="w-4 h-4 text-amber-400" />
+                <span>Bestsellers</span>
+                <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" />
               </button>
 
               <button
                 onClick={() => onBudgetClick('under-1499')}
-                className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 bg-white hover:bg-stone-50 text-slate-800 border border-stone-300 font-medium text-sm sm:text-base px-6 py-3.5 rounded-full shadow-xs hover:shadow transition-all duration-200 cursor-pointer"
+                className="flex-1 sm:flex-none inline-flex items-center justify-center space-x-1.5 bg-white hover:bg-stone-50 text-slate-800 border border-stone-300 font-medium text-xs sm:text-base px-3 sm:px-6 py-3 sm:py-3.5 rounded-full shadow-2xs hover:shadow transition-all cursor-pointer"
               >
-                <Sparkles className="w-4 h-4 text-rose-500" />
-                <span>Shop Under ₹1,499</span>
+                <Sparkles className="w-3.5 h-3.5 text-rose-500" />
+                <span>Under ₹1,499</span>
               </button>
             </div>
 
             {/* Trust Badges Bar directly below CTA */}
-            <div className="mt-10 pt-6 border-t border-stone-200/80 grid grid-cols-2 sm:grid-cols-4 gap-4 text-left">
+            <div className="mt-6 sm:mt-10 pt-4 sm:pt-6 border-t border-stone-200/80 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 text-left">
               <div className="flex items-center space-x-2.5">
                 <div className="w-8 h-8 rounded-full bg-amber-50 text-amber-700 flex items-center justify-center shrink-0">
                   <Award className="w-4 h-4" />

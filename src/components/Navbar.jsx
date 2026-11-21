@@ -121,19 +121,10 @@ export default function Navbar({
               <span>BIS 925 Verified</span>
             </button>
 
-            {/* Mobile Search Button */}
-            <button 
-              onClick={onOpenSearch}
-              className="md:hidden p-2 text-slate-700 hover:text-slate-950 transition"
-              aria-label="Search items"
-            >
-              <Search className="w-5 h-5" />
-            </button>
-
             {/* Wishlist Button */}
             <button 
               onClick={onOpenWishlist}
-              className="p-2 text-slate-700 hover:text-rose-600 relative transition group"
+              className="p-1.5 sm:p-2 text-slate-700 hover:text-rose-600 relative transition group"
               aria-label="Wishlist"
             >
               <Heart className="w-5 h-5 transition-transform group-hover:scale-110" />
@@ -147,7 +138,7 @@ export default function Navbar({
             {/* Cart Button with Total Amount Pill */}
             <button 
               onClick={onOpenCart}
-              className="flex items-center space-x-2 bg-slate-900 hover:bg-slate-800 text-white px-3 sm:px-3.5 py-2 rounded-full transition shadow-sm hover:shadow"
+              className="flex items-center space-x-1.5 sm:space-x-2 bg-slate-900 hover:bg-slate-800 text-white px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-full transition shadow-sm hover:shadow"
               aria-label="Open Shopping Bag"
             >
               <div className="relative">
@@ -166,6 +157,17 @@ export default function Navbar({
             </button>
 
           </div>
+        </div>
+
+        {/* Mobile Tap-to-Search Bar (Minous & GIVA mobile style) */}
+        <div className="mt-2.5 md:hidden">
+          <button
+            onClick={onOpenSearch}
+            className="w-full flex items-center space-x-2.5 text-left text-xs text-slate-400 bg-stone-100 hover:bg-stone-200/70 px-3.5 py-2.5 rounded-full border border-stone-200/80 transition"
+          >
+            <Search className="w-4 h-4 text-slate-400" />
+            <span className="text-slate-500 truncate">Search "Solitaire Ring", "Mangalsutra", "Gift"...</span>
+          </button>
         </div>
 
         {/* Secondary Category Navigation Bar (Desktop) */}

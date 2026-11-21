@@ -41,42 +41,42 @@ export default function BudgetFilter({ selectedBudget, onSelectBudget }) {
           </p>
         </div>
 
-        {/* Budget Cards Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+        {/* Budget Cards Carousel (Optimized for Mobile Touch) */}
+        <div className="flex sm:grid overflow-x-auto sm:overflow-visible no-scrollbar pb-1 sm:pb-0 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
           {BUDGET_TIERS.map((tier) => {
             const isSelected = selectedBudget === tier.id;
             return (
               <button
                 key={tier.id}
                 onClick={() => onSelectBudget(tier.id)}
-                className={`p-3.5 rounded-2xl text-left transition-all duration-200 border cursor-pointer relative overflow-hidden group ${
+                className={`w-[140px] sm:w-auto shrink-0 p-3 sm:p-3.5 rounded-2xl text-left transition-all duration-200 border cursor-pointer relative overflow-hidden group ${
                   isSelected
                     ? 'bg-slate-900 text-white border-slate-900 shadow-lg -translate-y-0.5'
                     : 'bg-white hover:bg-stone-50 text-slate-800 border-stone-200 shadow-2xs hover:shadow-sm'
                 }`}
               >
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xl">{budgetIcons[tier.id]}</span>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-lg sm:text-xl">{budgetIcons[tier.id]}</span>
                   {isSelected && (
                     <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
                   )}
                 </div>
 
-                <div className="font-serif font-bold text-sm sm:text-base leading-tight">
+                <div className="font-serif font-bold text-xs sm:text-base leading-tight">
                   {tier.label}
                 </div>
 
-                <p className={`text-[11px] mt-1 transition-colors ${
+                <p className={`text-[10px] sm:text-[11px] mt-0.5 transition-colors line-clamp-1 ${
                   isSelected ? 'text-slate-300' : 'text-slate-500'
                 }`}>
                   {budgetSubtitles[tier.id]}
                 </p>
 
-                <div className={`mt-2 flex items-center text-[10px] font-semibold transition ${
+                <div className={`mt-1.5 flex items-center text-[9px] sm:text-[10px] font-semibold transition ${
                   isSelected ? 'text-amber-300' : 'text-slate-400 group-hover:text-slate-700'
                 }`}>
-                  <span>Browse items</span>
-                  <ChevronRight className="w-3 h-3 ml-0.5" />
+                  <span>Browse</span>
+                  <ChevronRight className="w-2.5 h-2.5 ml-0.5" />
                 </div>
               </button>
             );

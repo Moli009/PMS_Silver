@@ -105,22 +105,22 @@ export default function ProductCard({
       </div>
 
       {/* Card Content */}
-      <div className="p-3.5 sm:p-4 flex-1 flex flex-col justify-between">
+      <div className="p-2.5 sm:p-4 flex-1 flex flex-col justify-between">
         
         <div>
           {/* Finish & Rating row */}
-          <div className="flex items-center justify-between mb-1.5">
-            <div className="flex items-center space-x-1.5">
-              <span className={`w-2.5 h-2.5 rounded-full border ${finishColors[product.finish]}`} />
-              <span className="text-[11px] text-slate-500 font-medium">
+          <div className="flex items-center justify-between mb-1">
+            <div className="flex items-center space-x-1">
+              <span className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full border ${finishColors[product.finish]}`} />
+              <span className="text-[10px] sm:text-[11px] text-slate-500 font-medium">
                 {finishNames[product.finish]}
               </span>
             </div>
 
-            <div className="flex items-center space-x-1 text-xs">
-              <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+            <div className="flex items-center space-x-0.5 text-[11px] sm:text-xs">
+              <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-amber-400 text-amber-400" />
               <span className="font-bold text-slate-800">{product.rating}</span>
-              <span className="text-slate-400 text-[11px]">({product.reviewCount})</span>
+              <span className="text-slate-400 text-[10px]">({product.reviewCount})</span>
             </div>
           </div>
 
@@ -134,34 +134,34 @@ export default function ProductCard({
           </h4>
 
           {/* Description snippet */}
-          <p className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
+          <p className="text-[10px] sm:text-[11px] text-slate-500 line-clamp-1 mt-0.5">
             {product.description}
           </p>
         </div>
 
         {/* Price & Add to Cart button */}
-        <div className="mt-3.5 pt-2.5 border-t border-stone-100 flex items-center justify-between">
+        <div className="mt-2.5 pt-2 border-t border-stone-100 flex items-center justify-between">
           <div>
-            <div className="flex items-baseline space-x-1.5">
-              <span className="font-serif font-bold text-base sm:text-lg text-slate-900">
+            <div className="flex items-baseline space-x-1">
+              <span className="font-serif font-bold text-sm sm:text-lg text-slate-900">
                 ₹{product.price.toLocaleString('en-IN')}
               </span>
-              <span className="text-xs text-slate-400 line-through">
+              <span className="text-[10px] sm:text-xs text-slate-400 line-through">
                 ₹{product.originalPrice.toLocaleString('en-IN')}
               </span>
             </div>
             <p className="text-[9px] text-emerald-700 font-medium tracking-tight">
-              Inclusive of all taxes
+              Taxes incl.
             </p>
           </div>
 
           <button
             onClick={() => onAddToCart(product)}
-            className="bg-slate-900 hover:bg-amber-600 text-white p-2 sm:px-3 sm:py-2 rounded-xl text-xs font-semibold flex items-center space-x-1.5 transition-all shadow-xs cursor-pointer"
+            className="bg-slate-900 active:scale-95 hover:bg-amber-600 text-white px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl text-[11px] sm:text-xs font-semibold flex items-center space-x-1 transition-all shadow-xs shrink-0 cursor-pointer"
             title="Add to bag"
           >
-            <ShoppingBag className="w-3.5 h-3.5 text-amber-300" />
-            <span className="hidden sm:inline">Add</span>
+            <ShoppingBag className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-300" />
+            <span>+ Add</span>
           </button>
         </div>
 

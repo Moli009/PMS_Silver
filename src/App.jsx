@@ -287,30 +287,30 @@ export default function App() {
         />
 
         {/* 6. Product Catalog & Filter Workbench */}
-        <section id="catalog" className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <section id="catalog" className="py-6 sm:py-12 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           
           {/* Catalog Top Filter & Sort Bar */}
-          <div className="bg-white rounded-2xl p-4 sm:p-5 border border-stone-200/90 shadow-2xs mb-8">
+          <div className="bg-white rounded-2xl p-3 sm:p-5 border border-stone-200/90 shadow-2xs mb-5 sm:mb-8">
             
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4">
               
               {/* Active Category Title & Count */}
               <div>
                 <div className="flex items-center space-x-2">
-                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-slate-900 capitalize">
+                  <h3 className="font-serif text-lg sm:text-2xl font-bold text-slate-900 capitalize">
                     {selectedCategory === 'all' ? 'All 925 Sterling Silver Pieces' : selectedCategory}
                   </h3>
-                  <span className="text-xs bg-stone-100 text-slate-700 font-semibold px-2.5 py-0.5 rounded-full border border-stone-200">
+                  <span className="text-[11px] sm:text-xs bg-stone-100 text-slate-700 font-semibold px-2 py-0.5 rounded-full border border-stone-200">
                     {filteredProducts.length} items
                   </span>
                 </div>
-                <p className="text-xs text-slate-500 mt-0.5">
-                  Handcrafted with pure 925 silver core & electroplated with protective anti-tarnish rhodium
+                <p className="text-[11px] sm:text-xs text-slate-500 mt-0.5">
+                  Pure 925 silver core & protective anti-tarnish rhodium
                 </p>
               </div>
 
               {/* Metal Finish Filter Pills */}
-              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+              <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 sm:pb-0">
                 <span className="text-xs font-semibold text-slate-500 mr-1 hidden sm:inline">Finish:</span>
                 {METAL_FINISHES.map((finish) => {
                   const isSelected = selectedFinish === finish.id;
@@ -318,7 +318,7 @@ export default function App() {
                     <button
                       key={finish.id}
                       onClick={() => setSelectedFinish(finish.id)}
-                      className={`text-xs px-3 py-1.5 rounded-full border transition cursor-pointer flex items-center space-x-1.5 ${
+                      className={`shrink-0 text-[11px] sm:text-xs px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border transition cursor-pointer flex items-center space-x-1 sm:space-x-1.5 ${
                         isSelected
                           ? 'bg-slate-900 text-white border-slate-900 font-semibold shadow-xs'
                           : 'bg-stone-50 hover:bg-stone-100 text-slate-700 border-stone-200'
@@ -326,7 +326,7 @@ export default function App() {
                     >
                       {finish.color && (
                         <span 
-                          className="w-2.5 h-2.5 rounded-full border border-slate-400" 
+                          className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full border border-slate-400" 
                           style={{ backgroundColor: finish.color }}
                         />
                       )}
@@ -409,7 +409,7 @@ export default function App() {
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-6">
               {filteredProducts.map((product) => (
                 <ProductCard
                   key={product.id}
