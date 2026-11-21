@@ -25,7 +25,6 @@ import Footer from './components/Footer';
 import SearchModal from './components/SearchModal';
 import CertificateModal from './components/CertificateModal';
 import PincodeModal from './components/PincodeModal';
-import PhoneSimulator from './components/PhoneSimulator';
 import MobileBottomNav from './components/MobileBottomNav';
 
 import { 
@@ -65,12 +64,6 @@ export default function App() {
   const [isPincodeOpen, setIsPincodeOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [quickViewProduct, setQuickViewProduct] = useState(null);
-  const [isPhoneMode, setIsPhoneMode] = useState(() => {
-    return typeof window !== 'undefined' && (
-      window.location.search.includes('mobile') || 
-      window.location.search.includes('phone')
-    );
-  });
 
   // Notification Toast State
   const [toastMessage, setToastMessage] = useState(null);
@@ -234,8 +227,7 @@ export default function App() {
   };
 
   return (
-    <PhoneSimulator isEnabled={isPhoneMode} onToggle={() => setIsPhoneMode(!isPhoneMode)}>
-      <div className="min-h-screen flex flex-col bg-[#FAF9F6] text-slate-900 pb-16 sm:pb-0">
+    <div className="min-h-screen flex flex-col bg-[#FAF9F6] text-slate-900 pb-16 sm:pb-0">
         
         {/* 1. Rotating Announcement Bar */}
         <AnnouncementBar onOpenOffer={handleClaimFreeGift} />
@@ -546,7 +538,6 @@ export default function App() {
         cartCount={cartItems.reduce((acc, i) => acc + i.quantity, 0)}
       />
 
-      </div>
-    </PhoneSimulator>
+    </div>
   );
 }
