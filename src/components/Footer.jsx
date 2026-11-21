@@ -169,7 +169,7 @@ export default function Footer({ onSelectCategory, onOpenCertificate }) {
 
         {/* Bottom Strip: Payment methods & Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-4">
-          <p>© {new Date().getFullYear()} PMS Silver Jewels Pvt. Ltd. All rights reserved. Crafted with reference to GIVA & Minous.</p>
+          <p>© {new Date().getFullYear()} PMS Silver Jewels Pvt. Ltd. All rights reserved. Everyday Fine 925 Sterling Jewellery.</p>
 
           <div className="flex items-center space-x-2 text-[10px] text-slate-400">
             <span className="bg-slate-900 px-2 py-1 rounded border border-slate-800">UPI</span>

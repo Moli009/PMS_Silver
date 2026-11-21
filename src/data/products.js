@@ -136,7 +136,7 @@ export const PRODUCTS = [
     discount: '43% OFF',
     rating: 4.9,
     reviewCount: 420,
-    badge: 'Minous Favorite',
+    badge: 'Customer Favorite',
     isNew: false,
     occasion: 'romantic',
     images: [
@@ -165,7 +165,7 @@ export const PRODUCTS = [
     discount: '42% OFF',
     rating: 4.95,
     reviewCount: 512,
-    badge: 'GIVA Inspired',
+    badge: 'Signature Bestseller',
     isNew: false,
     occasion: 'everyday',
     images: [
@@ -426,7 +426,7 @@ export const REVIEWS = [
     verified: true,
     product: 'Silver Solitaire Eternal Sparkle Ring',
     date: '2 days ago',
-    comment: 'I was hesitant to buy fine silver online, but PMS Silver blew me away! The packaging feels just as premium as GIVA, and the zircon shine is insane in natural sunlight. Hallmarked 925 on the inside band.',
+    comment: 'I was hesitant to buy fine silver online, but PMS Silver blew me away! The packaging feels ultra luxurious, and the zircon shine is insane in natural sunlight. Hallmarked 925 on the inside band.',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80'
   },
   {

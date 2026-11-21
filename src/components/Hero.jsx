@@ -56,7 +56,7 @@ export default function Hero({ onExploreClick, onBudgetClick, onSelectCategory }
       id: 'slide-3',
       productId: 'pms-005',
       category: 'mangalsutras',
-      badge: 'GIVA & Minous Inspired',
+      badge: '925 Sacred Collection',
       badgeColor: 'bg-emerald-500 text-white',
       title: 'Daily Grace Silver Mangalsutra',
       subtitle: 'Pure 925 silver solitaire centerpiece laced with certified natural black onyx beads. Featherlight daily elegance.',

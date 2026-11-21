@@ -31,9 +31,6 @@ export default function BudgetFilter({ selectedBudget, onSelectBudget }) {
             <h3 className="font-serif text-lg sm:text-xl font-bold text-slate-900">
               Shop by Budget
             </h3>
-            <span className="text-[11px] bg-amber-50 text-amber-800 px-2 py-0.5 rounded-full font-medium border border-amber-200">
-              Minous & GIVA Curations
-            </span>
           </div>
 
           <p className="text-xs text-slate-500">

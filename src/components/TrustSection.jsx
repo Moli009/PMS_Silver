@@ -32,7 +32,7 @@ export default function TrustSection({ onOpenCertificate }) {
             Why 100,000+ Women Trust PMS Silver
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 mt-2">
-            Just like GIVA and Minous, we bridge the gap between expensive gold jewellery and fleeting fashion accessories with certified 925 fine sterling silver.
+            We bridge the gap between expensive gold jewellery and fleeting fashion accessories with certified 925 fine sterling silver.
           </p>
         </div>
 
