@@ -253,8 +253,13 @@ export default function App() {
 
       <main className="flex-1">
         
-        {/* 3. Luxury Hero Section */}
+        {/* 3. 4-Slide Best Products Showcase Carousel */}
         <Hero
+          onSelectCategory={(catId) => {
+            setSelectedCategory(catId);
+            const el = document.getElementById('catalog');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
           onExploreClick={() => {
             const el = document.getElementById('catalog');
             if (el) el.scrollIntoView({ behavior: 'smooth' });
