@@ -26,6 +26,7 @@ import SearchModal from './components/SearchModal';
 import CertificateModal from './components/CertificateModal';
 import PincodeModal from './components/PincodeModal';
 import MobileBottomNav from './components/MobileBottomNav';
+import AuthModal from './components/AuthModal';
 
 import { 
   SlidersHorizontal, 
@@ -63,6 +64,8 @@ export default function App() {
   const [isCertificateOpen, setIsCertificateOpen] = useState(false);
   const [isPincodeOpen, setIsPincodeOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
   const [quickViewProduct, setQuickViewProduct] = useState(null);
 
   // Notification Toast State
@@ -237,6 +240,8 @@ export default function App() {
           cartCount={cartItems.reduce((acc, i) => acc + i.quantity, 0)}
           cartTotal={cartSubtotal}
           wishlistCount={wishlist.length}
+          currentUser={currentUser}
+          onOpenAuth={() => setIsAuthOpen(true)}
           onOpenCart={() => setIsCartOpen(true)}
           onOpenWishlist={() => setIsWishlistOpen(true)}
           onOpenSearch={() => setIsSearchOpen(true)}
@@ -513,6 +518,21 @@ export default function App() {
         onClose={() => setIsCertificateOpen(false)}
       />
 
+      {/* Member Sign-In & Account Modal */}
+      <AuthModal
+        isOpen={isAuthOpen}
+        onClose={() => setIsAuthOpen(false)}
+        currentUser={currentUser}
+        onLogin={(user) => {
+          setCurrentUser(user);
+          showToast(`Welcome, ${user.name}! ₹200 voucher unlocked.`);
+        }}
+        onLogout={() => {
+          setCurrentUser(null);
+          showToast('Signed out successfully');
+        }}
+      />
+
       {/* Pincode Lookup Modal */}
       <PincodeModal
         isOpen={isPincodeOpen}
@@ -536,9 +556,10 @@ export default function App() {
           const el = document.getElementById('catalog');
           if (el) el.scrollIntoView({ behavior: 'smooth' });
         }}
-        onSearchClick={() => setIsSearchOpen(true)}
         onWishlistClick={() => setIsWishlistOpen(true)}
         onCartClick={() => setIsCartOpen(true)}
+        onAuthClick={() => setIsAuthOpen(true)}
+        currentUser={currentUser}
         wishlistCount={wishlist.length}
         cartCount={cartItems.reduce((acc, i) => acc + i.quantity, 0)}
       />

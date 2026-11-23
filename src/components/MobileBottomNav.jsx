@@ -1,18 +1,19 @@
 import React from 'react';
-import { Home, Grid, Search, Heart, ShoppingBag } from 'lucide-react';
+import { Home, Grid, Heart, ShoppingBag, User } from 'lucide-react';
 
 export default function MobileBottomNav({ 
   onHomeClick, 
   onCategoryClick, 
-  onSearchClick, 
   onWishlistClick, 
-  onCartClick, 
+  onCartClick,
+  onAuthClick,
+  currentUser,
   wishlistCount, 
   cartCount,
   activeTab = 'home'
 }) {
   return (
-    <nav className="fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-stone-200/90 py-1.5 px-3 flex items-center justify-around shadow-lg transition-all sm:hidden">
+    <nav className="fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-stone-200/90 py-1.5 px-2 flex items-center justify-around shadow-lg transition-all sm:hidden">
       
       {/* Home */}
       <button
@@ -36,15 +37,6 @@ export default function MobileBottomNav({
         <span className="text-[10px] tracking-tight">Explore</span>
       </button>
 
-      {/* Search */}
-      <button
-        onClick={onSearchClick}
-        className="flex flex-col items-center justify-center p-1 w-14 text-slate-500 hover:text-slate-800 transition"
-      >
-        <Search className="w-5 h-5 mb-0.5" />
-        <span className="text-[10px] tracking-tight">Search</span>
-      </button>
-
       {/* Wishlist */}
       <button
         onClick={onWishlistClick}
@@ -59,6 +51,23 @@ export default function MobileBottomNav({
           )}
         </div>
         <span className="text-[10px] tracking-tight">Wishlist</span>
+      </button>
+
+      {/* Account / Login */}
+      <button
+        onClick={onAuthClick}
+        className="flex flex-col items-center justify-center p-1 w-14 text-slate-500 hover:text-slate-950 relative transition"
+      >
+        {currentUser ? (
+          <div className="w-5 h-5 rounded-full bg-slate-900 text-amber-300 flex items-center justify-center text-[10px] font-bold mb-0.5">
+            {currentUser.name ? currentUser.name.charAt(0).toUpperCase() : 'U'}
+          </div>
+        ) : (
+          <User className="w-5 h-5 mb-0.5" />
+        )}
+        <span className="text-[10px] tracking-tight font-medium">
+          {currentUser ? 'Account' : 'Login'}
+        </span>
       </button>
 
       {/* Cart */}
