@@ -9,7 +9,9 @@ import {
   Sparkles, 
   ShieldCheck, 
   FileCheck,
-  User
+  User,
+  ChevronRight,
+  MessageCircle
 } from 'lucide-react';
 
 export default function Navbar({ 
@@ -39,15 +41,58 @@ export default function Navbar({
   }, []);
 
   const navLinks = [
-    { id: 'all', label: 'All Jewellery' },
-    { id: 'rings', label: 'Rings' },
-    { id: 'earrings', label: 'Earrings' },
-    { id: 'necklaces', label: 'Necklaces' },
-    { id: 'bracelets', label: 'Bracelets' },
-    { id: 'mangalsutras', label: 'Mangalsutras' },
-    { id: 'anklets', label: 'Anklets' },
-    { id: 'men', label: "Men's Silver" },
-    { id: 'gifting', label: 'Gift Sets', badge: 'Popular' },
+    { 
+      id: 'all', 
+      label: 'All Jewellery', 
+      mobileLabel: 'All 925 Fine Silver',
+      badge: null 
+    },
+    { 
+      id: 'rings', 
+      label: 'Rings', 
+      mobileLabel: 'Rings', 
+      badge: 'Adjustable Free Size',
+      badgeClass: 'bg-emerald-50 text-emerald-700 border border-emerald-200/90'
+    },
+    { 
+      id: 'earrings', 
+      label: 'Earrings & Huggies', 
+      mobileLabel: 'Earrings & Huggies', 
+      badge: 'Trending',
+      badgeClass: 'bg-rose-50 text-rose-700 border border-rose-200/90'
+    },
+    { 
+      id: 'necklaces', 
+      label: 'Pendants & Necklaces', 
+      mobileLabel: 'Pendants & Necklaces', 
+      badge: null 
+    },
+    { 
+      id: 'bracelets', 
+      label: 'Bracelets & Cuffs', 
+      mobileLabel: 'Bracelets & Cuffs', 
+      badge: null 
+    },
+    { 
+      id: 'mangalsutras', 
+      label: 'Mangalsutras', 
+      mobileLabel: 'Pure Silver Mangalsutras', 
+      badge: 'Bestseller',
+      badgeClass: 'bg-amber-100 text-amber-900 border border-amber-300 font-semibold'
+    },
+    { 
+      id: 'men', 
+      label: "Men's Silver", 
+      mobileLabel: "Men's Silver Chains & Kadas", 
+      badge: null 
+    },
+    { 
+      id: 'gifting', 
+      label: 'Gift Sets', 
+      mobileLabel: 'Complete Gift Sets', 
+      badge: 'Popular',
+      badgeClass: 'bg-indigo-50 text-indigo-700 border border-indigo-200/90'
+    },
   ];
 
   return (
@@ -318,34 +363,67 @@ export default function Navbar({
               </button>
             </div>
 
-            {/* Category Links */}
-            <div className="flex-1 overflow-y-auto py-3 px-2">
-              <p className="px-3 text-[10px] uppercase font-bold text-slate-400 tracking-wider mb-2">
-                Shop Collections
-              </p>
-              {navLinks.map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => {
-                    onSelectCategory(cat.id);
-                    setMobileMenuOpen(false);
-                  }}
-                  className={`w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium flex items-center justify-between transition ${
-                    selectedCategory === cat.id 
-                      ? 'bg-slate-900 text-white' 
-                      : 'text-slate-700 hover:bg-slate-100'
-                  }`}
+            {/* Category Links with Visual Cues & Badges */}
+            <div className="flex-1 overflow-y-auto py-3 px-3">
+              <div className="flex items-center justify-between px-1 mb-2">
+                <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
+                  Shop Collections
+                </p>
+                <span className="text-[10px] text-amber-700 font-semibold">925 Pure Silver</span>
+              </div>
+
+              <div className="space-y-1">
+                {navLinks.map((cat) => {
+                  const isSelected = selectedCategory === cat.id;
+                  return (
+                    <button
+                      key={cat.id}
+                      onClick={() => {
+                        onSelectCategory(cat.id);
+                        setMobileMenuOpen(false);
+                      }}
+                      className={`w-full text-left px-3 py-2.5 rounded-xl text-xs sm:text-sm font-medium flex items-center justify-between transition group ${
+                        isSelected 
+                          ? 'bg-slate-900 text-white shadow-sm' 
+                          : 'text-slate-800 hover:bg-stone-100'
+                      }`}
+                    >
+                      <div className="flex items-center space-x-2.5 min-w-0 pr-2">
+                        <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${isSelected ? 'bg-amber-400' : 'bg-stone-300 group-hover:bg-slate-600'}`} />
+                        <span className="truncate">{cat.mobileLabel || cat.label}</span>
+                      </div>
+
+                      {cat.badge ? (
+                        <span className={`text-[10px] px-2 py-0.5 rounded-full shrink-0 ${
+                          isSelected 
+                            ? 'bg-amber-400 text-slate-950 font-bold' 
+                            : cat.badgeClass || 'bg-stone-100 text-slate-700'
+                        }`}>
+                          {cat.badge}
+                        </span>
+                      ) : (
+                        <ChevronRight className={`w-3.5 h-3.5 shrink-0 ${isSelected ? 'text-amber-300' : 'text-slate-300 group-hover:text-slate-500'}`} />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Direct WhatsApp Concierge in Hamburger Drawer */}
+              <div className="mt-4 pt-3 border-t border-slate-100">
+                <a
+                  href="https://wa.me/919876543210?text=Hello%20PMS%20Silver%20Trend,%20I%20need%20help%20choosing%20jewellery"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-emerald-50 hover:bg-emerald-100/90 text-emerald-800 border border-emerald-200/80 rounded-xl px-3 py-2.5 flex items-center justify-between text-xs font-semibold transition"
                 >
-                  <span>{cat.label}</span>
-                  {cat.badge && (
-                    <span className={`text-[10px] px-2 py-0.5 rounded-full ${
-                      selectedCategory === cat.id ? 'bg-amber-400 text-slate-950 font-bold' : 'bg-rose-100 text-rose-700 font-medium'
-                    }`}>
-                      {cat.badge}
-                    </span>
-                  )}
-                </button>
-              ))}
+                  <div className="flex items-center space-x-2">
+                    <MessageCircle className="w-4 h-4 text-emerald-600" />
+                    <span>Chat on WhatsApp</span>
+                  </div>
+                  <span className="text-[10px] bg-emerald-200/60 text-emerald-900 px-1.5 py-0.5 rounded font-bold">Stylist</span>
+                </a>
+              </div>
             </div>
 
             {/* Mobile Footer Trust */}
