@@ -19,7 +19,15 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { email, otp, token, expiresAt } = req.body || {};
+    let body = req.body;
+    if (typeof body === 'string') {
+      try {
+        body = JSON.parse(body);
+      } catch (e) {
+        body = {};
+      }
+    }
+    const { email, otp, token, expiresAt } = body || {};
 
     if (!email || !otp || !token || !expiresAt) {
       return res.status(400).json({ error: 'Missing required parameters (email, otp, token, expiresAt).' });

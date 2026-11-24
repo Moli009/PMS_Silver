@@ -20,7 +20,15 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { email, fullName } = req.body || {};
+    let body = req.body;
+    if (typeof body === 'string') {
+      try {
+        body = JSON.parse(body);
+      } catch (e) {
+        body = {};
+      }
+    }
+    const { email, fullName } = body || {};
 
     if (!email || !email.includes('@') || !email.includes('.')) {
       return res.status(400).json({ error: 'Please provide a valid email address.' });
