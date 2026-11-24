@@ -80,22 +80,26 @@ export default function Footer({ onSelectCategory, onOpenCertificate }) {
           
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-9 h-9 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center font-serif text-lg font-bold">
-                P
+            <div className="flex items-center space-x-3.5">
+              <div className="bg-white p-1 rounded-xl shadow-md border border-slate-700/60 inline-flex items-center justify-center shrink-0">
+                <img 
+                  src="/pms-logo.jpg" 
+                  alt="PMS Silver Trend Logo" 
+                  className="h-10 sm:h-12 w-auto object-contain rounded-lg"
+                />
               </div>
               <div>
-                <span className="font-serif text-2xl font-bold tracking-wider text-white">
-                  PMS SILVER
+                <span className="font-serif text-xl sm:text-2xl font-bold tracking-wider text-white block">
+                  PMS SILVER TREND
                 </span>
-                <p className="text-[10px] tracking-widest text-slate-400 uppercase font-medium">
-                  Everyday Fine 925 Sterling Jewellery
+                <p className="text-[10px] tracking-widest text-amber-300 uppercase font-medium">
+                  Lala Pradeep Kumar Mohit Agarwal Saraf
                 </p>
               </div>
             </div>
 
             <p className="text-slate-400 leading-relaxed text-xs pr-4">
-              PMS Silver is committed to democratizing luxury jewellery in India. Handcrafted in genuine 925 sterling silver with anti-tarnish rhodium protection, we create heirloom pieces designed for daily wear, gifting, and life's sweetest milestones.
+              PMS Silver Trend carries the trusted legacy of Lala Pradeep Kumar Mohit Agarwal Saraf. We bridge tradition with modern luxury, crafting genuine 925 sterling silver hallmarked jewellery with anti-tarnish rhodium protection for daily elegance and special occasions.
             </p>
 
             <div className="pt-2 flex items-center space-x-3 text-slate-400">
@@ -169,7 +173,7 @@ export default function Footer({ onSelectCategory, onOpenCertificate }) {
 
         {/* Bottom Strip: Payment methods & Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-4">
-          <p>© {new Date().getFullYear()} PMS Silver Jewels Pvt. Ltd. All rights reserved. Everyday Fine 925 Sterling Jewellery.</p>
+          <p>© {new Date().getFullYear()} PMS Silver Trend (Lala Pradeep Kumar Mohit Agarwal Saraf). All rights reserved. BIS 925 Hallmark Certified.</p>
 
           <div className="flex items-center space-x-2 text-[10px] text-slate-400">
             <span className="bg-slate-900 px-2 py-1 rounded border border-slate-800">UPI</span>

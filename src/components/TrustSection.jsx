@@ -26,13 +26,13 @@ export default function TrustSection({ onOpenCertificate }) {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
           <span className="text-[11px] uppercase font-bold tracking-widest text-amber-800 bg-amber-100/70 px-3 py-1 rounded-full">
-            The PMS Silver Standard
+            The PMS Silver Trend Standard
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mt-3">
-            Why 100,000+ Women Trust PMS Silver
+            Why 100,000+ Customers Trust PMS Silver Trend
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 mt-2">
-            We bridge the gap between expensive gold jewellery and fleeting fashion accessories with certified 925 fine sterling silver.
+            Backed by the trusted heritage of Lala Pradeep Kumar Mohit Agarwal Saraf, we bridge pure hallmark silver craftsmanship with modern luxury.
           </p>
         </div>
 

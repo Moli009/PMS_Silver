@@ -73,11 +73,18 @@ export default function CheckoutModal({
           
           {/* Header */}
           <div className="p-4 sm:p-5 border-b border-stone-200 flex items-center justify-between bg-stone-50/70">
-            <div className="flex items-center space-x-2">
-              <ShieldCheck className="w-5 h-5 text-emerald-600" />
-              <h3 className="font-serif font-bold text-base sm:text-lg text-slate-900">
-                PMS Silver Express Checkout
-              </h3>
+            <div className="flex items-center space-x-2.5">
+              <img 
+                src="/pms-logo.jpg" 
+                alt="PMS Silver Trend" 
+                className="h-8 w-auto object-contain rounded shadow-2xs" 
+              />
+              <div>
+                <h3 className="font-serif font-bold text-base sm:text-lg text-slate-900 leading-tight">
+                  PMS Silver Trend
+                </h3>
+                <p className="text-[10px] text-slate-500 font-medium">Lala Pradeep Kumar Mohit Agarwal Saraf • Express Checkout</p>
+              </div>
             </div>
             {step !== 'success' && (
               <button
@@ -307,8 +314,13 @@ export default function CheckoutModal({
             {/* Step 3: Success Screen */}
             {step === 'success' && (
               <div className="py-6 text-center space-y-4">
-                <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto animate-bounce">
-                  <CheckCircle2 className="w-10 h-10" />
+                <img 
+                  src="/pms-logo.jpg" 
+                  alt="PMS Silver Trend" 
+                  className="h-14 sm:h-16 w-auto object-contain mx-auto rounded-lg shadow-sm mb-1" 
+                />
+                <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+                  <CheckCircle2 className="w-8 h-8" />
                 </div>
 
                 <div>
@@ -316,10 +328,10 @@ export default function CheckoutModal({
                     Order Confirmed
                   </span>
                   <h3 className="font-serif font-bold text-2xl text-slate-900 mt-2">
-                    Thank you for choosing PMS Silver!
+                    Thank you for choosing PMS Silver Trend!
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto mt-1">
-                    Your order <strong className="text-slate-900">{orderNumber}</strong> has been received and is being carefully hallmarked, polished, and packaged in our signature luxury velvet box.
+                    Your order <strong className="text-slate-900">{orderNumber}</strong> has been received by Lala Pradeep Kumar Mohit Agarwal Saraf and is being hallmarked and prepared in our signature luxury velvet box.
                   </p>
                 </div>
 

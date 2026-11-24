@@ -28,14 +28,16 @@ export default function CertificateModal({ isOpen, onClose }) {
             
             {/* Watermark Logo */}
             <div className="text-center pb-4 border-b border-stone-200">
-              <div className="w-12 h-12 rounded-full bg-slate-900 text-amber-300 flex items-center justify-center font-serif text-xl font-bold mx-auto mb-2 border border-amber-400">
-                P
-              </div>
-              <h3 className="font-serif font-bold text-xl text-slate-900 tracking-wider">
-                PMS SILVER JEWELLERY
+              <img 
+                src="/pms-logo.jpg" 
+                alt="PMS Silver Trend Official Seal" 
+                className="h-16 sm:h-20 w-auto object-contain mx-auto mb-2.5 drop-shadow-sm rounded-lg"
+              />
+              <h3 className="font-serif font-bold text-xl sm:text-2xl text-slate-900 tracking-wider">
+                PMS SILVER TREND
               </h3>
-              <p className="text-[10px] tracking-[0.25em] uppercase text-stone-500 font-semibold">
-                Certificate of Authenticity & BIS 925 Hallmark
+              <p className="text-[10px] tracking-[0.22em] uppercase text-stone-500 font-semibold mt-0.5">
+                Lala Pradeep Kumar Mohit Agarwal Saraf • BIS 925 Hallmark
               </p>
             </div>
 

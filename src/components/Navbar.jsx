@@ -70,22 +70,24 @@ export default function Navbar({
             </button>
           </div>
 
-          {/* Brand Logo - Luxury Typography like GIVA / Minous */}
-          <div className="flex items-center space-x-3 cursor-pointer" onClick={() => onSelectCategory('all')}>
-            <div className="w-9 h-9 rounded-full bg-slate-900 text-amber-300 flex items-center justify-center font-serif text-lg font-bold shadow-sm border border-amber-400/40">
-              P
-            </div>
-            <div>
+          {/* Brand Logo - Official PMS Silver Trend Logo */}
+          <div className="flex items-center space-x-2.5 cursor-pointer" onClick={() => onSelectCategory('all')}>
+            <img 
+              src="/pms-logo.jpg" 
+              alt="PMS Silver Trend Logo" 
+              className="h-9 sm:h-11 w-auto object-contain rounded-md shadow-2xs"
+            />
+            <div className="hidden sm:block">
               <div className="flex items-baseline space-x-1.5">
-                <span className="font-serif text-2xl sm:text-2xl font-bold tracking-wider text-slate-900">
+                <span className="font-serif text-xl sm:text-2xl font-bold tracking-wider text-slate-900">
                   PMS
                 </span>
-                <span className="font-serif text-xl sm:text-xl font-light tracking-widest text-slate-600">
-                  SILVER
+                <span className="font-serif text-lg sm:text-xl font-light tracking-widest text-slate-700">
+                  SILVER TREND
                 </span>
               </div>
-              <p className="text-[10px] tracking-[0.2em] uppercase text-slate-400 font-semibold -mt-1">
-                925 Fine Jewellery
+              <p className="text-[9px] tracking-[0.16em] uppercase text-slate-400 font-semibold -mt-1">
+                Lala Pradeep Kumar Mohit Agarwal Saraf
               </p>
             </div>
           </div>
@@ -237,11 +239,16 @@ export default function Navbar({
             
             {/* Drawer Header */}
             <div className="p-4 border-b border-slate-200 flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <div className="w-7 h-7 rounded-full bg-slate-900 text-amber-300 flex items-center justify-center font-serif text-sm font-bold">
-                  P
+              <div className="flex items-center space-x-2.5">
+                <img 
+                  src="/pms-logo.jpg" 
+                  alt="PMS Silver Trend" 
+                  className="h-8 w-auto object-contain rounded shadow-2xs"
+                />
+                <div>
+                  <span className="font-serif font-bold text-base text-slate-900 block leading-tight">PMS Silver Trend</span>
+                  <span className="text-[9px] text-slate-400 tracking-wider block font-medium">Lala Pradeep Kumar Mohit Agarwal Saraf</span>
                 </div>
-                <span className="font-serif font-bold text-lg text-slate-900">PMS Silver</span>
               </div>
               <button 
                 onClick={() => setMobileMenuOpen(false)}

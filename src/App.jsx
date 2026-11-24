@@ -1,11 +1,11 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import confetti from 'canvas-confetti';
-import { 
-  PRODUCTS, 
-  CATEGORIES, 
-  METAL_FINISHES, 
-  BUDGET_TIERS, 
-  OCCASIONS 
+import {
+  PRODUCTS,
+  CATEGORIES,
+  METAL_FINISHES,
+  BUDGET_TIERS,
+  OCCASIONS
 } from './data/products';
 
 import AnnouncementBar from './components/AnnouncementBar';
@@ -28,13 +28,13 @@ import PincodeModal from './components/PincodeModal';
 import MobileBottomNav from './components/MobileBottomNav';
 import AuthModal from './components/AuthModal';
 
-import { 
-  SlidersHorizontal, 
-  Sparkles, 
-  RotateCcw, 
-  Heart, 
-  Check, 
-  ArrowUpDown 
+import {
+  SlidersHorizontal,
+  Sparkles,
+  RotateCcw,
+  Heart,
+  Check,
+  ArrowUpDown
 } from 'lucide-react';
 
 export default function App() {
@@ -231,33 +231,33 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF9F6] text-slate-900 pb-16 sm:pb-0">
-        
-        {/* 1. Rotating Announcement Bar */}
-        <AnnouncementBar onOpenOffer={handleClaimFreeGift} />
 
-        {/* 2. Main Luxury Header */}
-        <Navbar
-          cartCount={cartItems.reduce((acc, i) => acc + i.quantity, 0)}
-          cartTotal={cartSubtotal}
-          wishlistCount={wishlist.length}
-          currentUser={currentUser}
-          onOpenAuth={() => setIsAuthOpen(true)}
-          onOpenCart={() => setIsCartOpen(true)}
-          onOpenWishlist={() => setIsWishlistOpen(true)}
-          onOpenSearch={() => setIsSearchOpen(true)}
-          onOpenCertificate={() => setIsCertificateOpen(true)}
-          selectedCategory={selectedCategory}
-          onSelectCategory={(catId) => {
-            setSelectedCategory(catId);
-            const el = document.getElementById('catalog');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
-          userPincode={userPincode}
-          onOpenPincodeModal={() => setIsPincodeOpen(true)}
-        />
+      {/* 1. Rotating Announcement Bar */}
+      <AnnouncementBar onOpenOffer={handleClaimFreeGift} />
+
+      {/* 2. Main Luxury Header */}
+      <Navbar
+        cartCount={cartItems.reduce((acc, i) => acc + i.quantity, 0)}
+        cartTotal={cartSubtotal}
+        wishlistCount={wishlist.length}
+        currentUser={currentUser}
+        onOpenAuth={() => setIsAuthOpen(true)}
+        onOpenCart={() => setIsCartOpen(true)}
+        onOpenWishlist={() => setIsWishlistOpen(true)}
+        onOpenSearch={() => setIsSearchOpen(true)}
+        onOpenCertificate={() => setIsCertificateOpen(true)}
+        selectedCategory={selectedCategory}
+        onSelectCategory={(catId) => {
+          setSelectedCategory(catId);
+          const el = document.getElementById('catalog');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }}
+        userPincode={userPincode}
+        onOpenPincodeModal={() => setIsPincodeOpen(true)}
+      />
 
       <main className="flex-1">
-        
+
         {/* 3. 4-Slide Best Products Showcase Carousel */}
         <Hero
           onSelectCategory={(catId) => {
@@ -298,12 +298,12 @@ export default function App() {
 
         {/* 6. Product Catalog & Filter Workbench */}
         <section id="catalog" className="py-6 sm:py-12 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          
+
           {/* Catalog Top Filter & Sort Bar */}
           <div className="bg-white rounded-2xl p-3 sm:p-5 border border-stone-200/90 shadow-2xs mb-5 sm:mb-8">
-            
+
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4">
-              
+
               {/* Active Category Title & Count */}
               <div>
                 <div className="flex items-center space-x-2">
@@ -328,15 +328,14 @@ export default function App() {
                     <button
                       key={finish.id}
                       onClick={() => setSelectedFinish(finish.id)}
-                      className={`shrink-0 text-[11px] sm:text-xs px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border transition cursor-pointer flex items-center space-x-1 sm:space-x-1.5 ${
-                        isSelected
+                      className={`shrink-0 text-[11px] sm:text-xs px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border transition cursor-pointer flex items-center space-x-1 sm:space-x-1.5 ${isSelected
                           ? 'bg-slate-900 text-white border-slate-900 font-semibold shadow-xs'
                           : 'bg-stone-50 hover:bg-stone-100 text-slate-700 border-stone-200'
-                      }`}
+                        }`}
                     >
                       {finish.color && (
-                        <span 
-                          className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full border border-slate-400" 
+                        <span
+                          className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full border border-slate-400"
                           style={{ backgroundColor: finish.color }}
                         />
                       )}
@@ -350,7 +349,7 @@ export default function App() {
 
             {/* Sub-Filters: Occasion & Sort */}
             <div className="mt-4 pt-3.5 border-t border-stone-100 flex flex-wrap items-center justify-between gap-3 text-xs">
-              
+
               {/* Occasions */}
               <div className="flex items-center space-x-1 overflow-x-auto no-scrollbar py-1">
                 <span className="text-slate-400 font-medium mr-1.5 shrink-0">Occasion:</span>
@@ -358,11 +357,10 @@ export default function App() {
                   <button
                     key={occ.id}
                     onClick={() => setSelectedOccasion(occ.id)}
-                    className={`shrink-0 px-2.5 py-1 rounded-lg transition ${
-                      selectedOccasion === occ.id
+                    className={`shrink-0 px-2.5 py-1 rounded-lg transition ${selectedOccasion === occ.id
                         ? 'bg-amber-100 text-amber-900 font-bold'
                         : 'text-slate-600 hover:text-slate-900 hover:bg-stone-100'
-                    }`}
+                      }`}
                   >
                     {occ.label}
                   </button>
@@ -457,7 +455,8 @@ export default function App() {
       />
 
       {/* MODALS & DRAWERS */}
-      
+
+
       {/* Quick View Product Modal */}
       <ProductDetailModal
         product={quickViewProduct}

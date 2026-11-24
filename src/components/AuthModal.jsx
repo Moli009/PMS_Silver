@@ -199,15 +199,24 @@ export default function AuthModal({
             <div>
               {/* Top Luxury Banner */}
               <div className="bg-gradient-to-r from-slate-900 to-stone-900 text-white p-6 relative overflow-hidden">
-                <div className="flex items-center space-x-2 text-amber-300 text-xs font-semibold uppercase tracking-wider mb-1">
-                  <Gift className="w-3.5 h-3.5" />
-                  <span>New Member Benefit</span>
+                <div className="flex items-center justify-between mb-3">
+                  <div className="bg-white p-1 rounded-lg inline-flex items-center shadow-xs">
+                    <img 
+                      src="/pms-logo.jpg" 
+                      alt="PMS Silver Trend" 
+                      className="h-8 w-auto object-contain rounded" 
+                    />
+                  </div>
+                  <div className="flex items-center space-x-1.5 text-amber-300 text-[11px] font-semibold uppercase tracking-wider bg-white/10 px-2.5 py-1 rounded-full border border-white/10">
+                    <Gift className="w-3.5 h-3.5 text-amber-400" />
+                    <span>₹200 Welcome Gift</span>
+                  </div>
                 </div>
                 <h3 className="font-serif text-xl sm:text-2xl font-bold">
-                  Sign In to PMS Silver
+                  Sign In to PMS Silver Trend
                 </h3>
                 <p className="text-xs text-slate-300 mt-1">
-                  Unlock <strong>Flat ₹200 OFF</strong> on your first order + free BIS certificate & warranty tracking.
+                  Lala Pradeep Kumar Mohit Agarwal Saraf • 925 Hallmark Privileges
                 </p>
               </div>
 
