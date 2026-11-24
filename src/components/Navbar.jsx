@@ -305,66 +305,6 @@ export default function Navbar({
               </button>
             </div>
 
-            {/* Member Profile or Login Card in Mobile Drawer */}
-            {currentUser ? (
-              <div className="p-3.5 bg-gradient-to-r from-slate-900 to-slate-800 text-white flex items-center justify-between border-b border-slate-700">
-                <div className="flex items-center space-x-2.5">
-                  <div className="w-9 h-9 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center font-bold text-sm">
-                    {currentUser.name ? currentUser.name.charAt(0).toUpperCase() : 'U'}
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-white leading-tight">{currentUser.name}</p>
-                    <p className="text-[10px] text-amber-300 font-medium">{currentUser.points} Silver Coins Available</p>
-                  </div>
-                </div>
-                <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    onOpenAuth();
-                  }}
-                  className="text-[11px] bg-white/10 hover:bg-white/20 border border-white/20 px-2.5 py-1 rounded-full font-medium"
-                >
-                  My Account
-                </button>
-              </div>
-            ) : (
-              <div className="p-3 bg-gradient-to-r from-amber-50 to-orange-50 border-b border-amber-200/60 flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <Sparkles className="w-4 h-4 text-amber-600 shrink-0" />
-                  <div>
-                    <p className="text-xs font-semibold text-slate-900">PMS Silver Member Club</p>
-                    <p className="text-[10px] text-slate-500">Sign in & unlock ₹200 off voucher</p>
-                  </div>
-                </div>
-                <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    onOpenAuth();
-                  }}
-                  className="bg-slate-900 hover:bg-slate-800 text-white text-[11px] font-semibold px-3 py-1.5 rounded-full shadow-sm shrink-0"
-                >
-                  Login / Join
-                </button>
-              </div>
-            )}
-
-            {/* Pincode & Trust alert in Mobile Menu */}
-            <div className="p-3 bg-slate-50 border-b border-slate-200 text-xs flex items-center justify-between">
-              <div className="flex items-center space-x-1.5 text-slate-600">
-                <MapPin className="w-3.5 h-3.5 text-rose-500" />
-                <span>Pincode: <strong>{userPincode || '400001'}</strong></span>
-              </div>
-              <button 
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenPincodeModal();
-                }}
-                className="text-amber-700 font-semibold underline text-[11px]"
-              >
-                Change
-              </button>
-            </div>
-
             {/* Shop by Budget Quick Carousel in Hamburger Menu */}
             <div className="p-3 border-b border-slate-100 bg-white">
               <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider mb-2">
