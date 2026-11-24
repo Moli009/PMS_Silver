@@ -12,7 +12,9 @@ import {
   ArrowRight, 
   LogOut,
   ShieldCheck,
-  Award
+  Award,
+  Loader2,
+  RefreshCw
 } from 'lucide-react';
 
 export default function AuthModal({ 
@@ -32,34 +34,100 @@ export default function AuthModal({
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [token, setToken] = useState('');
+  const [expiresAt, setExpiresAt] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [emailSentNotice, setEmailSentNotice] = useState('');
 
-  const handleSendOtp = (e) => {
+  const handleSendOtp = async (e) => {
     e.preventDefault();
     if (!email || !email.includes('@') || !email.includes('.')) {
-      setError('Please enter a valid email address to receive your OTP');
+      setError('Please enter a valid email address to receive your verification code');
       return;
     }
     setError('');
-    setStep('verify');
-    setOtp('9250'); // Demo convenience auto-fill
+    setIsLoading(true);
+    setEmailSentNotice('');
+
+    try {
+      const response = await fetch('/api/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.trim(), fullName: fullName.trim() })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        if (data.needsConfig) {
+          setError(
+            `Email sender (pmsdhampur25@gmail.com) requires Google App Password. Please set GMAIL_APP_PASSWORD in Vercel settings.`
+          );
+        } else {
+          setError(data.error || 'Failed to dispatch email. Please try again.');
+        }
+        setIsLoading(false);
+        return;
+      }
+
+      setToken(data.token);
+      setExpiresAt(data.expiresAt);
+      setEmailSentNotice(`OTP has been sent to ${email} from pmsdhampur25@gmail.com`);
+      setStep('verify');
+      setOtp('');
+      setIsLoading(false);
+    } catch (err) {
+      console.error('Send OTP fetch error:', err);
+      setError('Could not connect to the email server. Please check your network and try again.');
+      setIsLoading(false);
+    }
   };
 
-  const handleVerifyOtp = (e) => {
+  const handleVerifyOtp = async (e) => {
     e.preventDefault();
-    if (otp !== '9250' && otp.length < 4) {
-      setError('Invalid OTP. Please enter 9250');
+    if (!otp || otp.trim().length < 4) {
+      setError('Please enter the verification code sent to your email');
       return;
     }
     setError('');
-    const user = {
-      name: fullName.trim() || email.split('@')[0],
-      phone: phoneNumber ? `+91 ${phoneNumber}` : '+91 98765 43210',
-      email: email.trim(),
-      points: 250,
-      joinedDate: 'November 2026'
-    };
-    onLogin(user);
-    onClose();
+    setIsVerifying(true);
+
+    try {
+      const response = await fetch('/api/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email.trim(),
+          otp: otp.trim(),
+          token,
+          expiresAt
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || 'Incorrect or expired verification code. Please check your inbox.');
+        setIsVerifying(false);
+        return;
+      }
+
+      const user = {
+        name: fullName.trim() || email.split('@')[0],
+        phone: phoneNumber ? `+91 ${phoneNumber}` : '+91 98765 43210',
+        email: email.trim(),
+        points: 250,
+        joinedDate: 'November 2026'
+      };
+      onLogin(user);
+      onClose();
+      setIsVerifying(false);
+    } catch (err) {
+      console.error('Verify OTP error:', err);
+      setError('Verification service unavailable. Please try again.');
+      setIsVerifying(false);
+    }
   };
 
   const handleEmailLogin = (e) => {
@@ -311,10 +379,20 @@ export default function AuthModal({
 
                         <button
                           type="submit"
-                          className="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs sm:text-sm py-3 rounded-xl transition shadow-md flex items-center justify-center space-x-1.5"
+                          disabled={isLoading}
+                          className="w-full bg-slate-900 hover:bg-slate-800 disabled:bg-slate-700 text-white font-semibold text-xs sm:text-sm py-3 rounded-xl transition shadow-md flex items-center justify-center space-x-2"
                         >
-                          <span>Get OTP on Email</span>
-                          <ArrowRight className="w-4 h-4 text-amber-300" />
+                          {isLoading ? (
+                            <>
+                              <Loader2 className="w-4 h-4 animate-spin text-amber-300" />
+                              <span>Sending email from pmsdhampur25@gmail.com...</span>
+                            </>
+                          ) : (
+                            <>
+                              <span>Get OTP on Email</span>
+                              <ArrowRight className="w-4 h-4 text-amber-300" />
+                            </>
+                          )}
                         </button>
                       </form>
                     ) : (
@@ -323,46 +401,68 @@ export default function AuthModal({
                         <div className="text-center pb-1">
                           <div className="inline-flex items-center space-x-1.5 text-[11px] text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full mb-2.5 font-medium">
                             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                            <span>OTP sent from pmsdhampur25@gmail.com</span>
+                            <span>OTP dispatched from pmsdhampur25@gmail.com</span>
                           </div>
                           <p className="text-xs text-slate-600">
-                            Enter the 4-digit verification code sent to:
+                            Enter the 6-digit verification code sent to:
                           </p>
                           <p className="text-xs font-bold text-slate-900 mt-0.5">
                             {email}
+                          </p>
+                          <p className="text-[11px] text-slate-400 mt-1">
+                            (Be sure to check your spam/junk folder if not in inbox)
                           </p>
                         </div>
 
                         <div>
                           <input
                             type="text"
-                            maxLength={4}
+                            maxLength={6}
                             required
                             value={otp}
                             onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
-                            placeholder="Enter 4-digit OTP"
-                            className="w-full text-center tracking-[0.5em] text-lg font-bold p-3 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-slate-900 bg-stone-50"
+                            placeholder="Enter 6-digit OTP"
+                            className="w-full text-center tracking-[0.4em] text-xl font-bold p-3 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-slate-900 bg-stone-50"
                           />
-                          <p className="text-[10px] text-slate-400 text-center mt-1">
-                            Demo Code: <strong className="text-slate-800">9250</strong>
-                          </p>
                         </div>
 
                         <button
                           type="submit"
-                          className="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs sm:text-sm py-3 rounded-xl transition shadow-md flex items-center justify-center space-x-1.5"
+                          disabled={isVerifying}
+                          className="w-full bg-slate-900 hover:bg-slate-800 disabled:bg-slate-700 text-white font-semibold text-xs sm:text-sm py-3 rounded-xl transition shadow-md flex items-center justify-center space-x-2"
                         >
-                          <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                          <span>Verify & Sign In</span>
+                          {isVerifying ? (
+                            <>
+                              <Loader2 className="w-4 h-4 animate-spin text-emerald-400" />
+                              <span>Verifying Code...</span>
+                            </>
+                          ) : (
+                            <>
+                              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                              <span>Verify & Sign In</span>
+                            </>
+                          )}
                         </button>
 
-                        <button
-                          type="button"
-                          onClick={() => setStep('input')}
-                          className="w-full text-center text-xs text-slate-500 hover:text-slate-800 underline"
-                        >
-                          Change Email Address
-                        </button>
+                        <div className="flex items-center justify-between text-xs pt-1">
+                          <button
+                            type="button"
+                            onClick={handleSendOtp}
+                            disabled={isLoading}
+                            className="text-amber-800 hover:text-amber-900 font-semibold underline flex items-center space-x-1"
+                          >
+                            <RefreshCw className={`w-3 h-3 ${isLoading ? 'animate-spin' : ''}`} />
+                            <span>Resend Code</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => setStep('input')}
+                            className="text-slate-500 hover:text-slate-800 underline"
+                          >
+                            Change Email
+                          </button>
+                        </div>
                       </form>
                     )}
                   </>
