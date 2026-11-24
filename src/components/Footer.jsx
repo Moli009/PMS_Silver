@@ -154,7 +154,7 @@ export default function Footer({ onSelectCategory, onOpenCertificate }) {
               </li>
               <li className="flex items-center space-x-2">
                 <Mail className="w-3.5 h-3.5 text-amber-400" />
-                <span>care@pmssilver.in</span>
+                <span>pmsdhampur25@gmail.com</span>
               </li>
               <li className="flex items-center space-x-2">
                 <MapPin className="w-3.5 h-3.5 text-amber-400" />

@@ -35,8 +35,8 @@ export default function AuthModal({
 
   const handleSendOtp = (e) => {
     e.preventDefault();
-    if (!phoneNumber || phoneNumber.length < 10) {
-      setError('Please enter a valid 10-digit mobile number');
+    if (!email || !email.includes('@') || !email.includes('.')) {
+      setError('Please enter a valid email address to receive your OTP');
       return;
     }
     setError('');
@@ -52,9 +52,9 @@ export default function AuthModal({
     }
     setError('');
     const user = {
-      name: fullName.trim() || 'Valued Member',
-      phone: `+91 ${phoneNumber}`,
-      email: email.trim() || `${phoneNumber}@pmssilver.in`,
+      name: fullName.trim() || email.split('@')[0],
+      phone: phoneNumber ? `+91 ${phoneNumber}` : '+91 98765 43210',
+      email: email.trim(),
       points: 250,
       joinedDate: 'November 2026'
     };
@@ -220,7 +220,7 @@ export default function AuthModal({
                 </p>
               </div>
 
-              {/* Mode Toggle: Mobile OTP vs Email */}
+              {/* Mode Toggle: Email OTP vs Password */}
               <div className="px-6 pt-4 flex border-b border-stone-100 text-xs font-semibold">
                 <button
                   onClick={() => {
@@ -234,9 +234,9 @@ export default function AuthModal({
                       : 'border-transparent text-slate-400 hover:text-slate-700'
                   }`}
                 >
-                  <div className="flex items-center justify-center space-x-1">
-                    <Smartphone className="w-3.5 h-3.5" />
-                    <span>Instant Phone OTP</span>
+                  <div className="flex items-center justify-center space-x-1.5">
+                    <Mail className="w-3.5 h-3.5 text-amber-600" />
+                    <span>Instant Email OTP</span>
                   </div>
                 </button>
 
@@ -251,9 +251,9 @@ export default function AuthModal({
                       : 'border-transparent text-slate-400 hover:text-slate-700'
                   }`}
                 >
-                  <div className="flex items-center justify-center space-x-1">
-                    <Mail className="w-3.5 h-3.5" />
-                    <span>Email & Password</span>
+                  <div className="flex items-center justify-center space-x-1.5">
+                    <Lock className="w-3.5 h-3.5 text-slate-500" />
+                    <span>Password Login</span>
                   </div>
                 </button>
               </div>
@@ -268,14 +268,14 @@ export default function AuthModal({
                   </div>
                 )}
 
-                {/* OTP FLOW */}
+                {/* EMAIL OTP FLOW */}
                 {mode === 'otp' && (
                   <>
                     {step === 'input' ? (
                       <form onSubmit={handleSendOtp} className="space-y-3.5">
                         <div>
                           <label className="block text-xs font-medium text-slate-700 mb-1">
-                            Your Name (Optional)
+                            Your Name
                           </label>
                           <input
                             type="text"
@@ -288,21 +288,24 @@ export default function AuthModal({
 
                         <div>
                           <label className="block text-xs font-medium text-slate-700 mb-1">
-                            Mobile Number
+                            Email Address
                           </label>
-                          <div className="flex">
-                            <span className="inline-flex items-center px-3 text-xs bg-stone-100 border border-r-0 border-stone-300 rounded-l-xl text-slate-600 font-semibold">
-                              +91
-                            </span>
+                          <div className="relative">
                             <input
                               required
-                              type="tel"
-                              maxLength={10}
-                              placeholder="98765 43210"
-                              value={phoneNumber}
-                              onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, ''))}
-                              className="w-full text-xs p-2.5 rounded-r-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-slate-900"
+                              type="email"
+                              placeholder="you@example.com"
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
+                              className="w-full text-xs p-2.5 pl-9 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-slate-900"
                             />
+                            <Mail className="w-4 h-4 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                          </div>
+                          <div className="mt-2 p-2.5 bg-amber-50/80 border border-amber-200/80 rounded-xl text-[11px] text-amber-950 flex items-start space-x-2">
+                            <ShieldCheck className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                            <span>
+                              OTP will be sent to this email from <strong>pmsdhampur25@gmail.com</strong>
+                            </span>
                           </div>
                         </div>
 
@@ -310,7 +313,7 @@ export default function AuthModal({
                           type="submit"
                           className="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs sm:text-sm py-3 rounded-xl transition shadow-md flex items-center justify-center space-x-1.5"
                         >
-                          <span>Get OTP on Phone</span>
+                          <span>Get OTP on Email</span>
                           <ArrowRight className="w-4 h-4 text-amber-300" />
                         </button>
                       </form>
@@ -318,11 +321,15 @@ export default function AuthModal({
                       /* OTP VERIFICATION STEP */
                       <form onSubmit={handleVerifyOtp} className="space-y-3.5">
                         <div className="text-center pb-1">
+                          <div className="inline-flex items-center space-x-1.5 text-[11px] text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full mb-2.5 font-medium">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                            <span>OTP sent from pmsdhampur25@gmail.com</span>
+                          </div>
                           <p className="text-xs text-slate-600">
                             Enter the 4-digit verification code sent to:
                           </p>
                           <p className="text-xs font-bold text-slate-900 mt-0.5">
-                            +91 {phoneNumber}
+                            {email}
                           </p>
                         </div>
 
@@ -354,7 +361,7 @@ export default function AuthModal({
                           onClick={() => setStep('input')}
                           className="w-full text-center text-xs text-slate-500 hover:text-slate-800 underline"
                         >
-                          Change Phone Number
+                          Change Email Address
                         </button>
                       </form>
                     )}
