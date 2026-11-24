@@ -252,6 +252,12 @@ export default function App() {
           const el = document.getElementById('catalog');
           if (el) el.scrollIntoView({ behavior: 'smooth' });
         }}
+        selectedBudget={selectedBudget}
+        onSelectBudget={(budgetId) => {
+          setSelectedBudget(budgetId);
+          const el = document.getElementById('catalog');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }}
         userPincode={userPincode}
         onOpenPincodeModal={() => setIsPincodeOpen(true)}
       />

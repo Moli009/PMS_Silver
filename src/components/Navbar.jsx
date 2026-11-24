@@ -26,6 +26,8 @@ export default function Navbar({
   currentUser,
   selectedCategory, 
   onSelectCategory,
+  selectedBudget,
+  onSelectBudget,
   userPincode,
   onOpenPincodeModal
 }) {
@@ -361,6 +363,36 @@ export default function Navbar({
               >
                 Change
               </button>
+            </div>
+
+            {/* Shop by Budget Quick Carousel in Hamburger Menu */}
+            <div className="p-3 border-b border-slate-100 bg-white">
+              <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider mb-2">
+                Shop by Budget
+              </p>
+              <div className="grid grid-cols-2 gap-1.5">
+                {[
+                  { id: 'under-1499', label: 'Under ₹1,499' },
+                  { id: 'under-2499', label: 'Under ₹2,499' },
+                  { id: 'under-3999', label: 'Under ₹3,999' },
+                  { id: 'above-4000', label: 'Premium ₹4,000+' }
+                ].map((b) => (
+                  <button
+                    key={b.id}
+                    onClick={() => {
+                      if (onSelectBudget) onSelectBudget(b.id);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`text-center py-1.5 px-2 rounded-lg text-xs font-semibold transition ${
+                      selectedBudget === b.id
+                        ? 'bg-slate-900 text-white font-bold'
+                        : 'bg-stone-50 hover:bg-stone-100 text-slate-700 border border-stone-200/80'
+                    }`}
+                  >
+                    {b.label}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Category Links with Visual Cues & Badges */}
